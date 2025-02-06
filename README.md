@@ -66,7 +66,7 @@ and download the `debian-12.8.0-amd64-netinst.iso`
 
 ### Virtual Box Configuration : 
 
-great now that we have the `.iso` downloaded we launch virtual box (it's what i'm \
+Great now that we have the `.iso` downloaded we launch virtual box (it's what i'm \
 gonna be using in my case) you can use UTM if you don't have it as per subject \
 instructions, the installation process should be similar 
 
