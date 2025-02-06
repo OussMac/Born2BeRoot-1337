@@ -66,7 +66,9 @@ and download the `debian-12.8.0-amd64-netinst.iso`
 
 ### Virtual Box Configuration : 
 
-great now that we have the `.iso` downloaded we launch virtual box (it's what i'm gonna be using in my case) you can use UTM if you don't have it as per subject instructions, the installation process should be similar 
+great now that we have the `.iso` downloaded we launch virtual box (it's what i'm \
+gonna be using in my case) you can use UTM if you don't have it as per subject \
+instructions, the installation process should be similar 
 
 1 - click on new to create a new virtual machine :
 
@@ -1381,9 +1383,11 @@ so the output looks something like this :
 Now for the percentage, basically we will use the same concept but use specifiers in \
 printf, and calculate the percentage using the formula.
 
-$$
+
+```
 (used/total)*100
-$$
+```
+
 like this :
 
 ```bash
@@ -1423,9 +1427,11 @@ and we make sure to do this at the end of the processing using the pattern `END`
 
 Total Disk space is basically the same but we convert to Gb using the following formula
 
-$$
+
+```
 (MbTotal)/1024 = ..?.. Gb
-$$
+```
+
  Now in Code
  ```bash
  TOTAL_DISK=$(df -BM | grep "^/dev/" | awk '{TD += $2 } END {printf("%d", (TD/1024))}')
@@ -1460,13 +1466,17 @@ we only care about the **idle** portion, which means the amount of time the CPU 
 
 we will just do simple math where :
 
-$$
-100 \ \% = idle \ \% + x \ \%
-$$
+
+```
+100% = idle% + x%
+```
+
 and to find x which is the amount of CPU usage in the system, we subtract idle from the total which is logically 100\%
-$$
-x \ \% = 100 \ \% - idle \ \% 
-$$
+
+```
+x% = 100% - idle% 
+```
+
 This will give us exactly how much of the CPU is loaded.
 
 now lets do this in code.
@@ -1476,8 +1486,8 @@ CPU_LOAD=$(iostat | grep -A 1 "idle" | grep "^ " | awk '{printf ("%.1f%%", 100-$
 ```
 
 `iostat` : lists statistics about CPU usage.\
-`grep -A 1` : fetches the line that includes `"idle"`, but the flag `-A <NUM>` includes how many trailing lines we want with it.
-`grep "^ "` : then we grep the spaces that only occur at the start of the line, to get rid of the header.
+`grep -A 1` : fetches the line that includes `"idle"`, but the flag `-A <NUM>` includes how many trailing lines we want with it.\
+`grep "^ "` : then we grep the spaces that only occur at the start of the line, to get rid of the header.\
 `awk` : we use awk to parse the provided output and calculate the usage using the formula above, then print it using printf.
 
 ---
@@ -1504,7 +1514,8 @@ TCP=$(netstat -t | grep "ESTABLISHED" | wc -l)
 we use `netstat` to view network statistics and with the flag `-t` which views all TCP connections.
 `grep "ESTABLISHED"` - then output only the established ones.
 
-an established TCP connection basically means the communications that are successfully set up between two devices(client/servers), using the TCP protocol,
+an established TCP connection basically means the communications that are \
+successfully set up between two devices(client/servers), using the TCP protocol,\
 which means the TCP three-way handshake is successful between the two.
 
 ##### TCP handshake :
@@ -1627,10 +1638,10 @@ crontab is a background process command line tool, used to put for example scrip
 
 the crontab configuration works through the `* * * * *` five starts as each mean
 
-1 - Minutes
-2 - Hours
-3 - Day of the month (1 - 31).
-4 - Months
+1 - Minutes\
+2 - Hours\
+3 - Day of the month (1 - 31).\
+4 - Months\
 5 - Day of the week, (0-6) Sunday being (0 or 7).
 
 to specify the script to run every `number of` minutes we use the `*\<NUM>` as 
